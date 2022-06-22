@@ -7,15 +7,17 @@ import {
 } from "react-feather";
 import Moment from 'moment';
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
 function MenuOne() {
 
+  const navigate = useNavigate();
   const [data, setData] = useState(AllOrders.response);
   const [searchText, setSearchText] = useState("");
 
   const columns = [
     {
-      name: 'ID',
+      name: 'Order Id',
       selector: 'id',
       sortable: false,
       minWidth: '100px'
@@ -135,7 +137,7 @@ function MenuOne() {
         />
       </div>
       <div className='mt-10'>
-        <button class="px-12 py-2.5 font-bold bg-blue-500 text-white">Create New Order</button>
+        <button class="px-12 py-2.5 font-bold bg-blue-500 text-white" onClick={(e) => navigate('/create')}>Create New Order</button>
       </div>
     </div>
   )
