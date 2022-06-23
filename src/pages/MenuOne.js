@@ -14,6 +14,7 @@ function MenuOne() {
   const navigate = useNavigate();
   const [data, setData] = useState(AllOrders.response);
   const [searchText, setSearchText] = useState("");
+  const objectLength = obj => Object.entries(obj).length;
 
   const columns = [
     {
@@ -39,18 +40,31 @@ function MenuOne() {
                 <div key={index} className={clsx(row.countOfItemTypes[key] === 0 ? 'text-red-600' : 'text-green-600', 'border inline-flex whitespace-nowrap border-black-200')}>
                   {key}: {row.countOfItemTypes[key]}
                 </div>
-              );
+              )
             })}
           </div>
         )
       }
     },
-    // {
-    //   name: '% of ElectronicsItems',
-    //   selector: '% of ElectronicsItems',
-    //   sortable: false,
-    //   minWidth: '100px'
-    // },
+    {
+      name: '% of ElectronicsItems',
+      allowOverflow: true,
+      cell: row => {
+        const totalItems = objectLength(row.countOfItemTypes);
+        let sum = 0; 
+        for (const key in row.countOfItemTypes) {
+          if(key === "Electronics"){
+              sum += row.countOfItemTypes[key]
+          }
+        }
+        return (
+          <div className='space-x-4 flex'>
+            {sum / totalItems * 100} %
+            {/* (count of electronics itmes /total count f items * 100) */}
+          </div>
+        )
+      }
+    },
     {
       name: 'CreatedBy',
       selector: 'createdBy',

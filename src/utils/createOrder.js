@@ -15,7 +15,7 @@ export const CreateOrders = {
             "itemTypeId": 1,
             "itemName": "iPhone 13 Max Pro",
             "temDescription": "This is iPhone",
-            "itemSpecifications": { "memory": "512 GB", "colorChoice": true, "color": "RED" }
+            "itemSpecifications": { "memory": "512 GB", "colorChoice": true, "color": ["RED","Green","Blue"] }
         },
         {
             "id": 2,
